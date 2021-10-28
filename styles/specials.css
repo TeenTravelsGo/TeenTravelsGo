@@ -38,9 +38,14 @@
     color: white;
 }
 
+.special-card-text--bold{
+    color: white;
+    font-weight: bolder;
+}
+
 @media only screen and (max-width: 480px) {
     .specials {
-        padding: 0;
+        padding: 20px;
     }
     .specials-details{
         margin-bottom: 20px;
