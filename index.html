@@ -30,7 +30,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
@@ -67,22 +71,22 @@
                 <div class="travel-card-heading">Convince Your Parents</div>
                 <hr class="travel-card-divider" />
                 <div class="travel-card-description">
-                  The first problem before planning any trip is convincing your parents.
-                  We have a structured strategy that might help convincing yours
+                  The first problem before planning any trip is convincing your
+                  parents. We have a structured strategy that might help
+                  convincing yours
                 </div>
               </div>
             </div>
             <div class="travel-card carousel-item">
               <img src="./assets/time.jpeg" class="travel-card-image" />
               <div class="travel-card-data">
-                <div class="travel-card-heading">
-                  Time Managed Trips
-                </div>
+                <div class="travel-card-heading">Time Managed Trips</div>
                 <hr class="travel-card-divider" />
                 <div class="travel-card-description">
-                  People have a misconception that if they go on a trip they have to take out
-                  atleast 5-7 days off thier schedule. Well thats not true we have some trip ideas
-                  that will just take up your weekend and it will be as good as any.
+                  People have a misconception that if they go on a trip they
+                  have to take out atleast 5-7 days off thier schedule. Well
+                  thats not true we have some trip ideas that will just take up
+                  your weekend and it will be as good as any.
                 </div>
               </div>
             </div>
@@ -92,8 +96,9 @@
                 <div class="travel-card-heading">Group Travel Plans</div>
                 <hr class="travel-card-divider" />
                 <div class="travel-card-description">
-                  So you got a gang of yours but can't agree on your travel ideas, no worries we have
-                  some jam packed packages, covering everything we could in our special group plans
+                  So you got a gang of yours but can't agree on your travel
+                  ideas, no worries we have some jam packed packages, covering
+                  everything we could in our special group plans
                 </div>
               </div>
             </div>
@@ -169,22 +174,16 @@
     <script>
       function sendLead() {
         const user_email = document.getElementById("user_email").value;
-        Email.send({
-          Host: "smtp.gmail.com",
-          Username: "swanitgoel.work@gmail.com",
-          Password: "Donttellmeyours@123",
-          To: "goelswanit@gmail.com",
-          From: "swanitgoel.work@gmail.com",
-          Subject: "Lead through website",
-          Body: `Lead Email : ${user_email}`
-        })
-          .then(function (message) {
-              console.log(message);
+        $.post(
+          "https://teentravelsbackend.herokuapp.com/mail/send",
+          {
+            user_email: user_email
+          },
+          function (data, status) {
             alert("Your response has been recorded");
-          })
-          .catch((err) => {
-            alert("Something Went wrong");
-          });
+            document.getElementById("user_email").value=""
+          }
+        );
       }
     </script>
   </body>
